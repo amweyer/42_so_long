@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amayaweyer <amayaweyer@student.42.fr>      +#+  +:+       +#+         #
+#    By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:01:22 by amweyer           #+#    #+#              #
-#    Updated: 2025/07/15 17:52:00 by amayaweyer       ###   ########.fr        #
+#    Updated: 2025/08/22 13:19:06 by amweyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pipex
-NAME_BONUS = pipex_bonus
+NAME = so_long
+NAME_BONUS = so_long_bonus
 
 #include directories
 SRC_DIR = src
 BONUS_DIR = bonus_src
-GNL_DIR = get_next_line
+
 
 OBJ_DIR = obj
 BONUS_OBJ_DIR = bonus_obj
@@ -27,10 +27,17 @@ INC_BONUS_DIR = bonus_include
 
 LIBFT_DIR = libft
 PRINTF_DIR = printf
+MLX_DIR = mlx_linux
 
 SRC =  $(SRC_DIR)/main.c \
-       $(SRC_DIR)/errors.c \
-    #    $(SRC_DIR)/free.c \
+       $(SRC_DIR)/parsing.c \
+	   $(SRC_DIR)/free.c \
+	   $(SRC_DIR)/utils.c \
+	   $(SRC_DIR)/init.c \
+	   $(SRC_DIR)/get_next_line_utils_bonus.c \
+	   $(SRC_DIR)/get_next_line_bonus.c \
+#        $(SRC_DIR)/errors.c \
+
     #    $(SRC_DIR)/pipe.c \
     #    $(SRC_DIR)/pipe_utils.c \
     #    $(SRC_DIR)/pipe_init.c \
@@ -53,10 +60,10 @@ RM = rm -f
 
 CCFLAGS = -g3 -Wall -Werror -Wextra
 
-CPPFLAGS = -I $(INC_DIR) -I $(LIBFT_DIR) -I $(PRINTF_DIR)
-CPPFLAGS_BONUS = -I $(INC_BONUS_DIR) -I $(LIBFT_DIR) -I $(PRINTF_DIR) -I $(GNL_DIR)
+CPPFLAGS = -I $(INC_DIR) -I $(LIBFT_DIR) -I $(PRINTF_DIR) -I $(MLX_DIR) 
+CPPFLAGS_BONUS = -I $(INC_BONUS_DIR) -I $(LIBFT_DIR) -I $(PRINTF_DIR) -I $(MLX_DIR) 
 
-LIBS = -L $(LIBFT_DIR) -lft -L $(PRINTF_DIR) -lftprintf
+LIBS = -L $(LIBFT_DIR) -lft -L $(PRINTF_DIR) -lftprintf  -Lmlx_linux -lmlx_Linux -L/usr/lib -I $(MLX_DIR) -lXext -lX11 -lm -lz
 
 OBJS := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJS := $(BONUS_SRC:$(BONUS_DIR)/%.c=$(BONUS_OBJ_DIR)/%.o)
@@ -70,6 +77,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -C $(MLX_DIR)
 	@$(CC) $(CCFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "${GREEN}Compilation of $(NAME) done.${DEF_COLOR}"
 

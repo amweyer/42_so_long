@@ -1,21 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 17:51:31 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/22 11:46:07 by amweyer          ###   ########.fr       */
+/*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
+/*   Updated: 2025/08/22 11:49:47 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_len(char *str)
+#include "so_long.h"
+
+void	free_error(int fd, char *str, int gnl, char *message)
 {
-	int i;
+	if (str)
+		free(str);
+	if (gnl)
+		free_gnl();
+	if (fd >= 0)
+		close(fd);
+	ft_printf("Error\n");
+	ft_printf("%s\n", message);
+	exit(EXIT_FAILURE);
+}
+
+void	free_sucess(int fd)
+{
+	free_gnl();
+	close(fd);
+}
+
+void	free_tab(char **tab)
+{
+	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (tab[i])
+	{
+		free(tab[i]);
 		i++;
-	return (i);
+	}
+	free(tab);
 }
