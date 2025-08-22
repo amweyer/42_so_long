@@ -6,16 +6,18 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:26 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/22 13:56:22 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/22 21:10:03 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
 
 static void	show_map(t_game *game)
 {
 	int	i;
+
+	if(!game)
+		return;
 
 	printf("rows: %d\n", game->rows);
 	printf("cols: %d\n", game->cols);
@@ -50,6 +52,9 @@ int	parse(char **av, t_game *game)
 		return (1);
 	}
 	printf("Map OK\n");
+	printf("---------------\n");
+	check_path(game);
+	printf("---------------\n");
 	return (0);
 }
 
@@ -129,70 +134,3 @@ void	fill_map(char *filename, t_game *game)
 	game->map[i] = NULL;
 	free_sucess(fd);
 }
-
-int	check_map(t_game *game)
-{
-	t_axis	axis;
-
-	init_axis(&axis);
-	while (axis.x < game->rows)
-	{
-		axis.y = 0;
-		while (axis.y < game->cols)
-		{
-			if (check_contours(game, axis.x, axis.y))
-				return (1);
-			if (game->map[axis.x][axis.y] == 'C')
-				game->c++;
-			if (game->map[axis.x][axis.y] == 'E')
-				game->e++;
-			if (game->map[axis.x][axis.y] == 'P')
-				game->p++;
-			axis.y++;
-		}
-		axis.x++;
-	}
-	if ((game->e != 1) || (game->p != 1) || (game->c < 1))
-		return (1);
-	return (0);
-}
-
-int	check_contours(t_game *game, int x, int y)
-{
-	if ((x == 0) && (game->map[x][y] != '1'))
-		return (1);
-	if ((x == game->rows - 1) && (game->map[x][y] != '1'))
-		return (1);
-	if ((y == 0) && (game->map[x][y] != '1'))
-		return (1);
-	if ((y == game->cols - 1) && (game->map[x][y] != '1'))
-		return (1);
-	return (0);
-}
-
-t_axis	*find_position(t_game *game, char c)
-{
-	t_axis	*pos;
-
-	pos = malloc(sizeof(t_axis));
-	if (!pos)
-		return (NULL);
-	init_axis(pos);
-	while (pos->x < game->rows)
-	{
-		pos->y = 0;
-		while (pos->y < game->cols)
-		{
-			if (game->map[pos->x][pos->y] == c)
-				return (pos);
-		}
-		pos->x++;
-	}
-	return (NULL);
-}
-
-// int	check_path(t_game *game)
-// {
-	
-	
-// }

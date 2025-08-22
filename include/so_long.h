@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/22 13:50:16 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/22 21:04:45 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
 # include "libft.h"
+# include <stdio.h>
 
 typedef struct s_game
 {
 	char	**map;
-	// int		length;
-	// int		width;
 	int		rows;
 	int		cols;
 	int		c;
@@ -45,15 +44,25 @@ int			parse(char **av, t_game *game);
 int			check_format(char *filename);
 void		read_map(char *filename, t_game *game);
 void		fill_map(char *filename, t_game *game);
-int			check_contours(t_game *game, int x, int y);
+
+/* map_check.c */
+int			check_caracters(t_game *game);
+int			check_contours(t_game *game);
 int			check_map(t_game *game);
+int			check_path(t_game *game);
+int			check_duplicates(t_game *game);
+
+void		flood_fill_path(char **map, t_axis map_size, int row, int col);
 
 /* free.c */
 void		free_error(int fd, char *str, int gnl, char *message);
 void		free_sucess(int fd);
 void		free_tab(char **tab);
 
-/* utils.c */
+/* map_utils.c */
 int			get_len(char *str);
+int			count_caracter(t_game *game, char c);
+void		copy_game(t_game *game, t_game *copy);
+t_axis		find_position(t_game *game, char c);
 
 #endif
