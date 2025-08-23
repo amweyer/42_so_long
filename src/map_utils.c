@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:31 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/22 20:56:23 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 13:14:40 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,33 +45,38 @@ int	count_caracter(t_game *game, char c)
 	return (count);
 }
 
-void	copy_game(t_game *game, t_game *copy)
+t_game	*copy_game(t_game *game)
 {
-	int	i;
+	int		i;
+	t_game	*copy;
 
 	i = 0;
+	copy = malloc(sizeof(t_game));
+	if (!copy)
+		return (NULL);
 	copy->cols = game->cols;
 	copy->rows = game->rows;
-	copy->map = malloc(sizeof(char *) * game->rows);
+	copy->map = malloc(sizeof(char *) * (game->rows + 1));
 	if (!copy->map)
-	{
-		return ;
-	}
+		return (free(copy), NULL);
 	while (i < game->rows)
 	{
 		copy->map[i] = ft_strdup(game->map[i]);
 		if (!copy->map[i])
 		{
 			free_tab(copy->map);
-			return ;
+			free(copy);
+			return (NULL);
 		}
 		i++;
 	}
+	copy->map[i] = NULL;
+	return (copy);
 }
 
 t_axis	find_position(t_game *game, char c)
 {
-	t_axis	pos;
+	t_axis pos;
 
 	init_axis(&pos);
 	while (pos.x < game->rows)

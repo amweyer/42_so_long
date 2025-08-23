@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/22 11:49:47 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 13:07:06 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,10 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
+}
+
+void	free_game_copy(t_game *copy)
+{
+	free_tab(copy->map);
+	free(copy);
 }

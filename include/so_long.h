@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/22 21:04:45 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 13:07:21 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void		flood_fill_path(char **map, t_axis map_size, int row, int col);
 void		free_error(int fd, char *str, int gnl, char *message);
 void		free_sucess(int fd);
 void		free_tab(char **tab);
+void		free_game_copy(t_game *copy);
 
 /* map_utils.c */
 int			get_len(char *str);
 int			count_caracter(t_game *game, char c);
-void		copy_game(t_game *game, t_game *copy);
+t_game		*copy_game(t_game *game);
 t_axis		find_position(t_game *game, char c);
 
 #endif

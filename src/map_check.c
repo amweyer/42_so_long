@@ -6,46 +6,11 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 15:44:46 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/22 21:13:50 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 13:07:40 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int	check_map(t_game *game)
-// {
-// 	t_axis	axis;
-
-// 	init_axis(&axis);
-// 	while (axis.x < game->rows)
-// 	{
-// 		axis.y = 0;
-// 		while (axis.y < game->cols)
-// 		{
-// 			if (check_contours(game, axis))
-// 				return (1);
-// 			if (check_caracters(game, axis))
-// 				return (1);
-// 			if (game->map[axis.x][axis.y] == 'C')
-// 				game->c++;
-// 			if (game->map[axis.x][axis.y] == 'E')
-// 				game->e++;
-// 			if (game->map[axis.x][axis.y] == 'P')
-// 				game->p++;
-// 			axis.y++;
-// 		}
-// 		axis.x++;
-// 	}
-// 	if ((game->e != 1) || (game->p != 1) || (game->c < 1))
-// 		return (1);
-// 	if (check_path(game))
-// 	{
-// 		printf("No path found :((\n");
-// 		return (1);
-// 	}
-// 	printf("PATH FOUND!!\n");
-// 	return (0);
-// }
 
 int	check_map(t_game *game)
 {
@@ -123,6 +88,28 @@ int	check_duplicates(t_game *game)
 	return (0);
 }
 
+int	check_path(t_game *game)
+{
+	t_game	*game_copy;
+	t_axis	start_pos;
+	t_axis	map_size;
+
+	start_pos = find_position(game, 'P');
+	if (start_pos.x == -1)
+		return (1);
+	map_size.x = game->cols;
+	map_size.y = game->rows;
+	game_copy = copy_game(game);
+	if (!game_copy)
+		return (1);
+	flood_fill_path(game_copy->map, map_size, start_pos.x, start_pos.y);
+	if (count_caracter(game_copy, 'C') != 0)
+		return (free_game_copy(game_copy), 1);
+	if (count_caracter(game_copy, 'E') != 0)
+		return (free_game_copy(game_copy), 1);
+	return (free_game_copy(game_copy), 0);
+}
+
 // static void	show_pos(t_axis pos)
 // {
 // 	printf("x: %d\t", pos.x);
@@ -155,24 +142,4 @@ void	flood_fill_path(char **map, t_axis map_size, int row, int col)
 	flood_fill_path(map, map_size, row + 1, col);
 	flood_fill_path(map, map_size, row, col - 1);
 	flood_fill_path(map, map_size, row, col + 1);
-}
-
-int	check_path(t_game *game)
-{
-	t_game	game_copy;
-	t_axis	start_pos;
-	t_axis	map_size;
-
-	copy_game(game, &game_copy);
-	start_pos = find_position(game, 'P');
-	if (start_pos.x == -1)
-		return (free_tab(game_copy.map), 1);
-	map_size.x = game->cols;
-	map_size.y = game->rows;
-	flood_fill_path(game_copy.map, map_size, start_pos.x, start_pos.y);
-	if (count_caracter(&game_copy, 'C') != 0)
-		return (free_tab(game_copy.map), 1);
-	if (count_caracter(&game_copy, 'E') != 0)
-		return (free_tab(game_copy.map), 1);
-	return (free_tab(game_copy.map), 0);
 }
