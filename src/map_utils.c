@@ -6,20 +6,58 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:31 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/23 13:14:40 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/25 16:38:18 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// int	get_len(char *str)
+// {
+// 	int	i;
+// 	int len;
+
+// 	i = 0;
+// 	len = 0;
+// 	while (str[i] && str[i] != '1')
+// 		i++;
+// 	while (str[i] && str[i] != '\n')
+// 	{
+// 		len++;
+// 		i++;
+// 	}
+// 	return (len);
+// }
+
 int	get_len(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
+	len = 0;
+	if (!str)
+		return (0);
+	while (*str && *str != '1')
+		str++;
+	if (!*str)
+		return (0);
+	while (*str && *str != '\n')
+	{
+		len++;
+		str++;
+	}
+	return (len);
+}
+
+int	get_offset(char *str)
+{
+	int	offset;
+
+	offset = 0;
+	if (!str)
+		return (0);
+	while (str[offset] && str[offset] != '1')
+		offset++;
+	return (offset);
 }
 
 int	count_caracter(t_game *game, char c)
@@ -93,4 +131,20 @@ t_axis	find_position(t_game *game, char c)
 	pos.x = -1;
 	pos.y = -1;
 	return (pos);
+}
+
+int	check_valid_input(const char *line, const char *valid)
+{
+	int	i;
+
+	i = 0;
+	if(!line || !valid)
+		return(1);
+	while (line[i])
+	{
+		if (ft_strchr(valid, line[i]) == NULL)
+			return (1);
+		i++;
+	}
+	return (0);
 }

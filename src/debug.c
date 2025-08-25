@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/22 13:11:26 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/25 16:41:05 by amweyer          ###   ########.fr       */
+/*   Created: 2025/08/23 13:16:59 by amweyer           #+#    #+#             */
+/*   Updated: 2025/08/23 13:17:26 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_game *game)
+static void	show_pos(t_axis pos)
 {
-	game->rows = 0;
-	game->cols = 0;
-	game->ref = 0;
-	game->x_offset = 0;
-	game->y_offset = 0;
+	printf("x: %d\t", pos.x);
+	printf("y: %d\n", pos.y);
 }
 
-void init_axis(t_axis *axis)
+static void	show_map(t_game *game)
 {
-    axis->x=0;
-    axis->y=0;
+	int i;
+
+	printf("rows: %d\n", game->rows);
+	printf("cols: %d\n", game->cols);
+	printf("map:\n");
+	i = 0;
+	while (i < game->rows)
+	{
+		printf("%s\n", game->map[i]);
+		i++;
+	}
 }

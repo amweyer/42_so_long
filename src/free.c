@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/23 13:07:06 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 14:32:04 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,16 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void	free_game_copy(t_game *copy)
+void	free_game(t_game *game)
 {
-	free_tab(copy->map);
-	free(copy);
+	free_tab(game->map);
+	free(game);
+}
+
+void	free_map_exit_fail(t_game *game, const char *message)
+{
+	ft_printf("Error\n");
+	ft_printf("%s\n", message);	
+	free_tab(game->map);
+	exit(EXIT_FAILURE);
 }

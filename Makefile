@@ -6,7 +6,7 @@
 #    By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:01:22 by amweyer           #+#    #+#              #
-#    Updated: 2025/08/22 15:53:38 by amweyer          ###   ########.fr        #
+#    Updated: 2025/08/23 13:21:44 by amweyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC =  $(SRC_DIR)/main.c \
        $(SRC_DIR)/parsing.c \
        $(SRC_DIR)/map_check.c \
 	   $(SRC_DIR)/map_utils.c \
+	   $(SRC_DIR)/map_io.c \
 	   $(SRC_DIR)/free.c \
 	   $(SRC_DIR)/init.c \
 	   $(SRC_DIR)/get_next_line_utils_bonus.c \

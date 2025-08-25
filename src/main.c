@@ -6,27 +6,25 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:16 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/22 11:54:44 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/25 16:24:24 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_game	game;
+	t_game	game;
 
-    if(ac != 2)
-    {
-        ft_printf("Error: Incorrect number of arguments\n");
-        return 1;
-    }
-    parse(av, &game);
-    free_tab(game.map);
-       
+	if (ac != 2)
+	{
+		ft_printf("Error: Incorrect number of arguments\n");
+		return (1);
+	}
+	parse(av, &game);
+	// free_tab(game.map);
+	return (0);
 }
-
-
 
 // int main(void)
 // {
@@ -69,8 +67,6 @@ int main(int ac, char **av)
 //     return (0);
 // }
 
-
-
 // # define WINDOW_WIDTH 600
 // # define WINDOW_HEIGHT 300
 // #define MLX_ERROR 1
@@ -83,7 +79,8 @@ int main(int ac, char **av)
 //     mlx_ptr = mlx_init();
 //     if (mlx_ptr == NULL)
 //         return (MLX_ERROR);
-//     win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "My first window!");
+//     win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
+		// "My first window!");
 //     if (win_ptr == NULL)
 //     {
 //         free(win_ptr);
@@ -104,8 +101,6 @@ int main(int ac, char **av)
 // 	int		endian;
 // }				t_data;
 
-
-
 // void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 // {
 // 	char	*dst;
@@ -113,8 +108,6 @@ int main(int ac, char **av)
 // 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 // 	*(unsigned int*)dst = color;
 // }
-
-
 
 // int	main(void)
 // {
@@ -134,5 +127,3 @@ int main(int ac, char **av)
 // 	mlx_loop(mlx);
 
 // }
-
-

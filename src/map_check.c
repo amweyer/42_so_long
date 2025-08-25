@@ -6,23 +6,23 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 15:44:46 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/23 13:07:40 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/23 14:39:53 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_map(t_game *game)
+void	check_map(t_game *game)
 {
 	if (check_contours(game))
-		return (1);
+		free_map_exit_fail(game, "Check the contours");
 	if (check_caracters(game))
-		return (1);
+		free_map_exit_fail(game, "Check the caracters");
 	if (check_duplicates(game))
-		return (1);
+		free_map_exit_fail(game, "Check duplicates or caracter presence");
 	if (check_path(game))
-		return (1);
-	return (0);
+		free_map_exit_fail(game, "Check path availability");
+	return ;
 }
 
 int	check_contours(t_game *game)
@@ -104,32 +104,11 @@ int	check_path(t_game *game)
 		return (1);
 	flood_fill_path(game_copy->map, map_size, start_pos.x, start_pos.y);
 	if (count_caracter(game_copy, 'C') != 0)
-		return (free_game_copy(game_copy), 1);
+		return (free_game(game_copy), 1);
 	if (count_caracter(game_copy, 'E') != 0)
-		return (free_game_copy(game_copy), 1);
-	return (free_game_copy(game_copy), 0);
+		return (free_game(game_copy), 1);
+	return (free_game(game_copy), 0);
 }
-
-// static void	show_pos(t_axis pos)
-// {
-// 	printf("x: %d\t", pos.x);
-// 	printf("y: %d\n", pos.y);
-// }
-
-// static void	show_map(t_game *game)
-// {
-// 	int	i;
-
-// 	printf("rows: %d\n", game->rows);
-// 	printf("cols: %d\n", game->cols);
-// 	printf("map:\n");
-// 	i = 0;
-// 	while (i < game->rows)
-// 	{
-// 		printf("%s\n", game->map[i]);
-// 		i++;
-// 	}
-// }
 
 void	flood_fill_path(char **map, t_axis map_size, int row, int col)
 {
