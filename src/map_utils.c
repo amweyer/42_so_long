@@ -6,47 +6,11 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:31 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/25 16:38:18 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 17:22:05 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int	get_len(char *str)
-// {
-// 	int	i;
-// 	int len;
-
-// 	i = 0;
-// 	len = 0;
-// 	while (str[i] && str[i] != '1')
-// 		i++;
-// 	while (str[i] && str[i] != '\n')
-// 	{
-// 		len++;
-// 		i++;
-// 	}
-// 	return (len);
-// }
-
-int	get_len(char *str)
-{
-	int	len;
-
-	len = 0;
-	if (!str)
-		return (0);
-	while (*str && *str != '1')
-		str++;
-	if (!*str)
-		return (0);
-	while (*str && *str != '\n')
-	{
-		len++;
-		str++;
-	}
-	return (len);
-}
 
 int	get_offset(char *str)
 {
@@ -114,7 +78,7 @@ t_game	*copy_game(t_game *game)
 
 t_axis	find_position(t_game *game, char c)
 {
-	t_axis pos;
+	t_axis	pos;
 
 	init_axis(&pos);
 	while (pos.x < game->rows)
@@ -138,8 +102,8 @@ int	check_valid_input(const char *line, const char *valid)
 	int	i;
 
 	i = 0;
-	if(!line || !valid)
-		return(1);
+	if (!line || !valid)
+		return (1);
 	while (line[i])
 	{
 		if (ft_strchr(valid, line[i]) == NULL)

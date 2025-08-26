@@ -6,21 +6,21 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 13:16:59 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/23 13:17:26 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 16:45:55 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	show_pos(t_axis pos)
-{
-	printf("x: %d\t", pos.x);
-	printf("y: %d\n", pos.y);
-}
+// static void	show_pos(t_axis pos)
+// {
+// 	printf("x: %d\t", pos.x);
+// 	printf("y: %d\n", pos.y);
+// }
 
-static void	show_map(t_game *game)
+void	show_map(t_game *game)
 {
-	int i;
+	int	i;
 
 	printf("rows: %d\n", game->rows);
 	printf("cols: %d\n", game->cols);

@@ -6,29 +6,26 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/23 14:32:04 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 17:15:37 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_error(int fd, char *str, int gnl, char *message)
+void	cleanup(int fd, char **map, char *line, const char *msg)
 {
-	if (str)
-		free(str);
-	if (gnl)
-		free_gnl();
+	if (line)
+		free(line);
+	if (map)
+		free_tab(map);
 	if (fd >= 0)
 		close(fd);
-	ft_printf("Error\n");
-	ft_printf("%s\n", message);
-	exit(EXIT_FAILURE);
-}
-
-void	free_sucess(int fd)
-{
 	free_gnl();
-	close(fd);
+	if (msg)
+	{
+		ft_printf("Error\n%s\n", msg);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	free_tab(char **tab)
@@ -36,6 +33,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -46,14 +45,9 @@ void	free_tab(char **tab)
 
 void	free_game(t_game *game)
 {
-	free_tab(game->map);
+	if (!game)
+		return ;
+	if (game->map)
+		free_tab(game->map);
 	free(game);
-}
-
-void	free_map_exit_fail(t_game *game, const char *message)
-{
-	ft_printf("Error\n");
-	ft_printf("%s\n", message);	
-	free_tab(game->map);
-	exit(EXIT_FAILURE);
 }

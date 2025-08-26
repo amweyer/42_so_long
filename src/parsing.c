@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:26 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/25 16:23:35 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 17:55:33 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 // 	if (!game)
 // 		return ;
-// 	printf("rows: %d\n", game->rows);
-// 	printf("cols: %d\n", game->cols);
+// 	// printf("rows: %d\n", game->rows);
+// 	// printf("cols: %d\n", game->cols);
 // 	printf("map:\n");
 // 	i = 0;
 // 	while (i < game->rows)
@@ -29,27 +29,28 @@
 // 	}
 // }
 
-int	parse(char **av, t_game *game)
+void	parse(char **av, t_game *game)
 {
 	char	*filename;
 
 	if (!av || !av[1])
-		return (1);
+	{
+		printf("Error\nInput : incorrect format\n");
+		exit(EXIT_FAILURE);
+	}
 	filename = av[1];
 	if (check_format(filename))
 	{
-		printf("error: incorrect format\n");
-		return (1);
+		printf("Error\nInput : incorrect format\n");
+		exit(EXIT_FAILURE);
 	}
 	init_map(game);
 	read_map(filename, game);
-	
-	// fill_map(filename, game);
-	// check_map(game);
-	// printf("---------------\n");
-	// printf("Map OK\n");
-	// printf("---------------\n");
+	fill_map(filename, game);
+	check_map(game);
+	printf("---------------\n");
+	printf("Map OK\n");
+	printf("---------------\n");
 	// show_map(game);
-	// printf("---------------\n");
-	return (0);
+	// 	printf("---------------\n");
 }

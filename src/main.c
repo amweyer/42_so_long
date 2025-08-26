@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:16 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/25 16:24:24 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 16:00:19 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	parse(av, &game);
-	// free_tab(game.map);
+	free_tab(game.map);
 	return (0);
 }
 
@@ -80,7 +80,7 @@ int	main(int ac, char **av)
 //     if (mlx_ptr == NULL)
 //         return (MLX_ERROR);
 //     win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-		// "My first window!");
+// "My first window!");
 //     if (win_ptr == NULL)
 //     {
 //         free(win_ptr);

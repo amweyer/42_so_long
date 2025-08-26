@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:11:26 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/25 16:41:05 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/26 15:43:17 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	init_map(t_game *game)
 	game->ref = 0;
 	game->x_offset = 0;
 	game->y_offset = 0;
+	game->map = NULL;
 }
 
-void init_axis(t_axis *axis)
+void	init_axis(t_axis *axis)
 {
-    axis->x=0;
-    axis->y=0;
+	axis->x = 0;
+	axis->y = 0;
 }
