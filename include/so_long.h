@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 18:30:26 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/27 19:14:07 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 // # include <mlx_int.h>
 
 # define TILE_SIZE 64
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_S 1
-# define KEY_A 0
-# define KEY_D 2
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
 # define KEY_PRESS_MASK 1L << 0
