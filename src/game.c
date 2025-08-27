@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:52:42 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 18:53:01 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/27 19:03:25 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,29 @@ int	key_release(int keycode, t_game *game)
 
 // int	map_update(t_game *game)
 // {
-// 	//printf("map update: %d\n", game->dx);
+// 	printf("map update: %d\n", game->dx);
 // 	return (0);
 // }
 
 void	play_game(t_game *game)
 {
-	//printf("play game\n");
+	// printf("play game\n");
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		free_exit(game, "mlx_init failed");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 64 * game->cols, 64* game->rows, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, 64 * game->cols, 64
+			* game->rows, "so_long");
 	if (!game->win_ptr)
 		free_exit(game, "mlx_new_window failed");
-	//printf("Before load images\n");
-	//printf("cols=%d rows=%d\n", game->cols, game->rows);
-	
-    load_images(game);
-	
-    //printf("BEDORE RENDER\n");
+	// printf("Before load images\n");
+	// printf("cols=%d rows=%d\n", game->cols, game->rows);
+	load_images(game);
+	// printf("BEDORE RENDER\n");
 	render_map(game);
-	//printf("ok\n");
+	// printf("ok\n");
 	// mlx_hook(game->win_ptr, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
 	// mlx_hook(game->win_ptr, KEY_RELEASE, KEY_RELEASE_MASK, key_release, game);
-	// // mlx_loop_hook(game->mlx_ptr, map_update, game);
+	// mlx_loop_hook(game->mlx_ptr, map_update, game);
 	mlx_loop(game->mlx_ptr);
 	//     return (0);
 	// while(1)
@@ -81,7 +80,7 @@ void	render_map(t_game *game)
 {
 	t_axis axis;
 
-	//printf("start map\n");
+	// printf("start map\n");
 	init_axis(&axis);
 	while (axis.y < game->rows)
 	{
@@ -113,5 +112,5 @@ void	render_map(t_game *game)
 		axis.y++;
 	}
 
-	printf("finish map\n");
+	// printf("finish map\n");
 }
