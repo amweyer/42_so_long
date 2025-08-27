@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:16 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/26 16:00:19 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/27 18:57:20 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,41 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	parse(av, &game);
-	free_tab(game.map);
+	play_game(&game);
+
+
+
+
+	
+	free_exit(&game, NULL);
 	return (0);
 }
+
+
+/*
+	game.mlx_ptr = mlx_init();
+	if (!game.mlx_ptr)
+		free_exit(&game, "mlx_init failed");
+	game.win_ptr = mlx_new_window(game.mlx_ptr, 64 * game.cols, 64* game.rows, "so_long");
+	if (!game.win_ptr)
+		free_exit(&game, "mlx_new_window failed");
+	//printf("Before load images\n");
+	//printf("cols=%d rows=%d\n", game.cols, game.rows);
+	
+    load_images(&game);
+	
+    //printf("BEDORE RENDER\n");
+	render_map(&game);
+	//printf("ok\n");
+	// mlx_hook(game.win_ptr, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
+	// mlx_hook(game.win_ptr, KEY_RELEASE, KEY_RELEASE_MASK, key_release, game);
+	// // mlx_loop_hook(game.mlx_ptr, map_update, game);
+	mlx_loop(game.mlx_ptr);
+	//     return (0);
+*/
+
+
+
 
 // int main(void)
 // {

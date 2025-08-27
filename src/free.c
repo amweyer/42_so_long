@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/26 17:15:37 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/27 13:04:19 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,36 @@ void	free_game(t_game *game)
 	if (game->map)
 		free_tab(game->map);
 	free(game);
+}
+
+void	free_exit(t_game *game, char *msg)
+{
+	if (!game)
+		return ;
+	if (game->map)
+		free_tab(game->map);
+	if (game->img_player)
+		mlx_destroy_image(game->mlx_ptr, game->img_player);
+	if (game->img_collectible)
+		mlx_destroy_image(game->mlx_ptr, game->img_collectible);
+	if (game->img_exit)
+		mlx_destroy_image(game->mlx_ptr, game->img_exit);
+	if (game->img_floor)
+		mlx_destroy_image(game->mlx_ptr, game->img_floor);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+		mlx_destroy_display(game->mlx_ptr);
+	free(game->mlx_ptr);
+	game->mlx_ptr = NULL;
+	game->win_ptr = NULL;
+	game->img_player = NULL;
+	game->img_collectible = NULL;
+	game->img_exit = NULL;
+	game->img_floor = NULL;
+	if (msg)
+	{
+		ft_printf("Error\n%s\n", msg);
+		exit(EXIT_FAILURE);
+	}
 }

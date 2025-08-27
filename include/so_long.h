@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/26 18:09:37 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/27 18:30:26 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,20 @@
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
 # include "libft.h"
+# include <mlx.h>
 # include <stdio.h>
+// # include <mlx_int.h>
+
+# define TILE_SIZE 64
+# define KEY_ESC 53
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
+# define KEY_PRESS_MASK 1L << 0
+# define KEY_RELEASE_MASK 1L << 1
 
 typedef struct s_game
 {
@@ -26,6 +39,19 @@ typedef struct s_game
 	int		ref;
 	int		x_offset;
 	int		y_offset;
+	int		player_x;
+	int		player_y;
+	int		dx;
+	int		dy;
+	int		tile_size;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_player;
+	void	*img_collectible;
+	void	*img_exit;
+	void	*img_floor;
+	void	*img_wall;
+
 }			t_game;
 
 typedef struct s_axis
@@ -35,7 +61,7 @@ typedef struct s_axis
 }			t_axis;
 
 /* init.c */
-void		init_map(t_game *game);
+void		init_game(t_game *game);
 void		init_axis(t_axis *axis);
 
 /* parsing.c */
@@ -63,6 +89,7 @@ void		flood_fill_path(char **map, t_axis map_size, int row, int col);
 void		cleanup(int fd, char **map, char *line, const char *msg);
 void		free_tab(char **tab);
 void		free_game(t_game *game);
+void		free_exit(t_game *game, char *msg);
 
 /* map_utils.c */
 int			get_len(char *str);
@@ -74,5 +101,15 @@ int			check_valid_input(const char *line, const char *valid);
 
 /* debug.c */
 void		show_map(t_game *game);
+
+/* game_init.c */
+void		load_images(t_game *game);
+
+/* game.c */
+void		play_game(t_game *game);
+void		render_map(t_game *game);
+int			map_update(t_game *game);
+int			key_release(int keycode, t_game *game);
+int			key_press(int keycode, t_game *game);
 
 #endif
