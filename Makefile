@@ -6,7 +6,7 @@
 #    By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 15:01:22 by amweyer           #+#    #+#              #
-#    Updated: 2025/08/27 13:10:49 by amweyer          ###   ########.fr        #
+#    Updated: 2025/08/28 14:43:07 by amweyer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC =  $(SRC_DIR)/main.c \
 	   $(SRC_DIR)/debug.c \
 	   $(SRC_DIR)/game_init.c \
 	   $(SRC_DIR)/game.c \
+	   $(SRC_DIR)/move.c \
 #        $(SRC_DIR)/errors.c \
 
     #    $(SRC_DIR)/pipe.c \

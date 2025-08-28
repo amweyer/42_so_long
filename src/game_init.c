@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:36:09 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 18:45:03 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:31:16 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,17 @@ void		load_images(t_game *game)
 
     if(!game->img_player || !game->img_collectible || !game->img_exit || ! game->img_floor || !game->img_wall)
         free_exit(game, "image could not be loaded");
+}
+
+
+void init_map_variables(t_game *game)
+{
+    t_axis player;
+
+    player= find_position(game, 'P');
+    game->p_x = player.x;
+    game->p_y = player.y;
+
+    game->nb_collectibles = count_caracter(game, 'C');
+    
 }

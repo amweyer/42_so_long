@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 14:23:34 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/26 17:22:33 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:46:50 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	flood_fill_path(char **map, t_axis map_size, int row, int col)
 {
 	if (row < 0 || col < 0 || row >= map_size.y || col >= map_size.x)
 		return ;
-	if (map[row][col] == '1' || map[row][col] == 'V')
+	if (map[row][col] == '1' || map[row][col] == 'V' || map[row][col] == 'E')
 		return ;
 	map[row][col] = 'V';
 	flood_fill_path(map, map_size, row - 1, col);

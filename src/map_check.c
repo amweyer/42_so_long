@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 15:44:46 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/26 17:22:39 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:47:35 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	check_path(t_game *game)
 	flood_fill_path(game_copy->map, map_size, start_pos.x, start_pos.y);
 	if (count_caracter(game_copy, 'C') != 0)
 		return (free_game(game_copy), 1);
-	if (count_caracter(game_copy, 'E') != 0)
-		return (free_game(game_copy), 1);
+	// if (count_caracter(game_copy, 'E') != 0)
+	// 	return (free_game(game_copy), 1);
 	return (free_game(game_copy), 0);
 }

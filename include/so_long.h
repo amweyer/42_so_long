@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 19:14:07 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 14:46:15 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ typedef struct s_game
 	int		ref;
 	int		x_offset;
 	int		y_offset;
-	int		player_x;
-	int		player_y;
+	int		p_x;
+	int		p_y;
 	int		dx;
 	int		dy;
+	int		nb_collectibles;
 	int		tile_size;
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -60,9 +61,18 @@ typedef struct s_axis
 	int		y;
 }			t_axis;
 
+typedef struct s_move
+{
+	int		up;
+	int		down;
+	int		right;
+	int		left;
+}			t_move;
+
 /* init.c */
 void		init_game(t_game *game);
 void		init_axis(t_axis *axis);
+void		init_move(t_move *move);
 
 /* parsing.c */
 void		parse(char **av, t_game *game);
@@ -104,12 +114,18 @@ void		show_map(t_game *game);
 
 /* game_init.c */
 void		load_images(t_game *game);
+void		init_map_variables(t_game *game);
 
 /* game.c */
 void		play_game(t_game *game);
-void		render_map(t_game *game);
+int		render_map(t_game *game);
 int			map_update(t_game *game);
 int			key_release(int keycode, t_game *game);
 int			key_press(int keycode, t_game *game);
+
+/* move.c */
+void		do_move(t_game *game, t_move *move);
+t_axis		set_new_postion(t_game *game, t_move *move);
+void		set_axis(t_axis *axis, int x, int y);
 
 #endif

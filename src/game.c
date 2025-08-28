@@ -6,61 +6,44 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:52:42 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 19:20:11 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 14:45:47 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_press(int keycode, t_game *game)
+int	key_action(int keycode, t_game *game)
 {
+	t_move	move;
+
+	init_move(&move);
 	if (keycode == KEY_ESC)
-		exit(0);
+		free_exit(game, "Exiting...");
 	if (keycode == KEY_W)
-		game->dy = 1;
+		move.up = 1;
 	if (keycode == KEY_S)
-		game->dy = -1;
+		move.down = 1;
 	if (keycode == KEY_A)
-		game->dx = -1;
+		move.left = 1;
 	if (keycode == KEY_D)
-		game->dy = 1;
+		move.right = 1;
+	do_move(game, &move);
 	return (0);
 }
 
-int	key_release(int keycode, t_game *game)
-{
-	if (keycode == KEY_ESC)
-		free_exit(game,"game exited succesfully");
-	if (keycode == KEY_W)
-		game->dy = 0;
-	if (keycode == KEY_S)
-		game->dy = 0;
-	if (keycode == KEY_A)
-		game->dx = 0;
-	if (keycode == KEY_D)
-		game->dy = 0;
-	return (0);
-}
+// int	map_update(t_game *game)
+// {
+//     int b=0;
 
-void move_up()
-{
-    printf("moving upppp\n");
-}
+// 	if (game->dy > 0)
+// 		move_up();
+// 	// printf("up\n");
+// 	if (game->dy < 0)
+// 		b++;
+// 	// printf("down\n");
 
-
-int	map_update(t_game *game)
-{
-    int b=0;
-
-	if (game->dy > 0)
-		move_up();
-	// printf("up\n");
-	if (game->dy < 0)
-		b++;
-	// printf("down\n");
-    
-	return (0);
-}
+// 	return (0);
+// }
 
 void	play_game(t_game *game)
 {
@@ -74,20 +57,21 @@ void	play_game(t_game *game)
 		free_exit(game, "mlx_new_window failed");
 	// printf("Before load images\n");
 	// printf("cols=%d rows=%d\n", game->cols, game->rows);
+	init_map_variables(game);
 	load_images(game);
-	// printf("BEDORE RENDER\n");
 	render_map(game);
 	// printf("ok\n");
-	mlx_hook(game->win_ptr, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
-	mlx_hook(game->win_ptr, KEY_RELEASE, KEY_RELEASE_MASK, key_release, game);
-	mlx_loop_hook(game->mlx_ptr, map_update, game);
+	// mlx_hook(game->win_ptr, KEY_PRESS, KEY_PRESS_MASK, key_press, game);
+	// mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
+	mlx_key_hook(game->win_ptr, key_action, game);
+	mlx_loop_hook(game->mlx_ptr, render_map, game);
 	mlx_loop(game->mlx_ptr);
 	//     return (0);
 	// while(1)
 	// 	;
 }
 
-void	render_map(t_game *game)
+int	render_map(t_game *game)
 {
 	t_axis axis;
 
@@ -122,6 +106,7 @@ void	render_map(t_game *game)
 		}
 		axis.y++;
 	}
+	return (0);
 
 	// printf("finish map\n");
 }
