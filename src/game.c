@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:52:42 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 16:29:03 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:42:14 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	key_action(int keycode, t_game *game)
 
 	init_move(&move);
 	if (keycode == KEY_ESC)
-		free_exit(game, "Exiting...");
+		free_exit(game, NULL);
 	if (keycode == KEY_W)
 		move.up = 1;
 	if (keycode == KEY_S)

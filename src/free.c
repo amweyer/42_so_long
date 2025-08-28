@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/21 12:16:53 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/27 13:04:19 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:41:58 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	free_exit(t_game *game, char *msg)
 {
 	if (!game)
 		return ;
-	if (game->map)
-		free_tab(game->map);
+
 	if (game->img_player)
 		mlx_destroy_image(game->mlx_ptr, game->img_player);
 	if (game->img_collectible)
@@ -77,9 +76,12 @@ void	free_exit(t_game *game, char *msg)
 	game->img_collectible = NULL;
 	game->img_exit = NULL;
 	game->img_floor = NULL;
+	if (game->map)
+		free_tab(game->map);
 	if (msg)
 	{
 		ft_printf("Error\n%s\n", msg);
 		exit(EXIT_FAILURE);
 	}
+	exit(EXIT_SUCCESS);
 }
