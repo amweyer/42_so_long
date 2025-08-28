@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:52:42 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 16:14:27 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:29:03 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	play_game(t_game *game)
 	init_map_variables(game);
 	load_images(game);
 	render_map(game);
+	ft_printf("moves: %d\n", game->count_move);
 	mlx_key_hook(game->win_ptr, key_action, game);
 	mlx_loop_hook(game->mlx_ptr, render_map, game);
 	mlx_loop(game->mlx_ptr);

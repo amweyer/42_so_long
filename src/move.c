@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:57:43 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 16:14:16 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:30:33 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	do_move(t_game *game, t_move *move)
 	new_p = set_new_postion(game, move);
 	if (game->map[new_p.x][new_p.y] == 'E' && game->nb_collectibles == 0)
 		free_exit(game, NULL);
-	if (game->map[new_p.x][new_p.y] != '1'
-		&& game->map[new_p.x][new_p.y] != 'E')
+	if (game->map[new_p.x][new_p.y] == '0'
+		|| game->map[new_p.x][new_p.y] == 'C')
 	{
 		if (game->map[new_p.x][new_p.y] == 'C')
 			game->nb_collectibles--;
@@ -28,6 +28,8 @@ void	do_move(t_game *game, t_move *move)
 		game->p_x = new_p.x;
 		game->p_y = new_p.y;
 		game->map[game->p_x][game->p_y] = 'P';
+		game->count_move++;
+		ft_printf("moves: %d\n", game->count_move);
 	}
 }
 
