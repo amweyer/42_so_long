@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 13:11:26 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 12:51:29 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 16:17:28 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_game(t_game *game)
 	game->y_offset = 0;
 	game->p_x = 0;
 	game->p_y = 0;
-	game->dx = 0;
-	game->dy = 0;
+	game->count_move = 0;
+	game->nb_collectibles = 0;
 	game->tile_size = TILE_SIZE;
 	game->map = NULL;
 	game->mlx_ptr = NULL;
@@ -31,6 +31,7 @@ void	init_game(t_game *game)
 	game->img_collectible = NULL;
 	game->img_exit = NULL;
 	game->img_floor = NULL;
+	game->img_wall = NULL;
 }
 
 void	init_axis(t_axis *axis)
@@ -39,11 +40,10 @@ void	init_axis(t_axis *axis)
 	axis->y = 0;
 }
 
-
 void	init_move(t_move *move)
 {
 	if (!move)
-		return;
+		return ;
 	move->up = 0;
 	move->down = 0;
 	move->right = 0;
