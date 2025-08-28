@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 14:46:15 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 15:59:09 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct s_game
 	int		y_offset;
 	int		p_x;
 	int		p_y;
-	int		dx;
-	int		dy;
 	int		nb_collectibles;
+	int		count_move;
 	int		tile_size;
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -118,7 +117,7 @@ void		init_map_variables(t_game *game);
 
 /* game.c */
 void		play_game(t_game *game);
-int		render_map(t_game *game);
+int			render_map(t_game *game);
 int			map_update(t_game *game);
 int			key_release(int keycode, t_game *game);
 int			key_press(int keycode, t_game *game);
