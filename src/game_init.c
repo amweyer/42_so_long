@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:36:09 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 16:15:53 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:09:32 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	load_images(t_game *game)
 
 void	init_map_variables(t_game *game)
 {
-	t_axis player;
+	t_axis	player;
 
 	player = find_position(game, 'P');
 	game->p_x = player.x;

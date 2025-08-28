@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:51:26 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/28 18:01:03 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:12:30 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	parse(char **av, t_game *game)
 
 	if (!av || !av[1])
 	{
-		printf("Error\nInput : incorrect format\n");
+		ft_printf("Error\nInput : incorrect format\n");
 		exit(EXIT_FAILURE);
 	}
 	filename = av[1];
 	if (check_format(filename))
 	{
-		printf("Error\nInput : incorrect format\n");
+		ft_printf("Error\nInput : incorrect format\n");
 		exit(EXIT_FAILURE);
 	}
 	init_game(game);

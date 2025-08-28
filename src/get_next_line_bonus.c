@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 09:09:13 by amayaweyer        #+#    #+#             */
-/*   Updated: 2025/08/21 11:53:16 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:12:58 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ char	*get_next_line(int fd)
 // 		return (1);
 // 	while ((line = get_next_line(fd)))
 // 	{
-// 		printf("%s", line);
+// 		ft_printf("%s", line);
 // 		free(line);
 // 	}
 // 	close(fd);

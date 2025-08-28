@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 11:52:42 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 17:59:35 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 18:12:18 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key_action(int keycode, t_game *game)
 
 int	close_window(t_game *game)
 {
-	printf("Closing window...\n");
+	ft_printf("Closing window...\n");
 	free_exit(game, NULL);
 	return (0);
 }
@@ -74,6 +74,7 @@ int	render_map(t_game *game)
 	}
 	return (0);
 }
+
 void	select_tile(char c, t_game *game, t_axis axis)
 {
 	if (c == '1')
