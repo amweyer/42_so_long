@@ -6,7 +6,7 @@
 /*   By: amweyer <amweyer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 18:12:05 by amweyer           #+#    #+#             */
-/*   Updated: 2025/08/28 15:59:09 by amweyer          ###   ########.fr       */
+/*   Updated: 2025/08/28 17:57:31 by amweyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 # define KEY_S 115
 # define KEY_A 97
 # define KEY_D 100
-# define KEY_PRESS 2
-# define KEY_RELEASE 3
-# define KEY_PRESS_MASK 1L << 0
-# define KEY_RELEASE_MASK 1L << 1
+# define ON_DESTROY 17
 
 typedef struct s_game
 {
@@ -121,7 +118,8 @@ int			render_map(t_game *game);
 int			map_update(t_game *game);
 int			key_release(int keycode, t_game *game);
 int			key_press(int keycode, t_game *game);
-
+void		select_tile(char c, t_game *game, t_axis axis);
+int			close_window(t_game *game);
 /* move.c */
 void		do_move(t_game *game, t_move *move);
 t_axis		set_new_postion(t_game *game, t_move *move);
